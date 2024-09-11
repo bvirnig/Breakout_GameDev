@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3xi06kwfmp80"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_1kqqq"]
+[ext_resource type="Texture2D" uid="uid://tckvtyadtmp6" path="res://assets/ball.png" id="2_e0tya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l64ci"]
+radius = 13.0
+
+[node name="Ball" type="CharacterBody2D"]
+position = Vector2(19, 29)
+script = ExtResource("1_1kqqq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_e0tya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l64ci")
+
+[node name="SlowMo" type="Timer" parent="."]
+one_shot = true
+
+[node name="trail" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1000
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 14.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(0.810608, 0.467688, 0.582457, 1)

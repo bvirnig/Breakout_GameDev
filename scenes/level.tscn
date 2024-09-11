@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://c40srdnai52lr"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_tr36b"]
+[ext_resource type="PackedScene" uid="uid://b47l2iyc0qduf" path="res://scenes/paddle.tscn" id="2_uwsla"]
+[ext_resource type="PackedScene" uid="uid://b3xi06kwfmp80" path="res://scenes/ball.tscn" id="2_w0e25"]
+[ext_resource type="PackedScene" uid="uid://f6svsvip63tc" path="res://scenes/brick.tscn" id="3_joq3i"]
+[ext_resource type="Texture2D" uid="uid://bejk6kved71lg" path="res://assets/0f0f0378-e0cc-4f27-aa82-be980337a7e4.png" id="5_omt1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nyne"]
+size = Vector2(38, 656)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57q7q"]
+size = Vector2(28, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k34er"]
+size = Vector2(1214, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exwus"]
+size = Vector2(1206, 20)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_tr36b")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Paddle" parent="." instance=ExtResource("2_uwsla")]
+position = Vector2(586, 602)
+motion_mode = 1
+
+[node name="Ball" parent="." groups=["SlowMoPowerUp"] instance=ExtResource("2_w0e25")]
+position = Vector2(621, 516)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2(596, 540)
+
+[node name="Left Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-615, -214)
+shape = SubResource("RectangleShape2D_5nyne")
+
+[node name="Right Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(568, -216)
+shape = SubResource("RectangleShape2D_57q7q")
+
+[node name="Ceiling" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-23, -550)
+shape = SubResource("RectangleShape2D_k34er")
+
+[node name="Brick" parent="." groups=["SlowMoPowerUp"] instance=ExtResource("3_joq3i")]
+position = Vector2(17, 413)
+mass = 0.001
+
+[node name="Brick2" parent="." groups=["Particle"] instance=ExtResource("3_joq3i")]
+position = Vector2(1133, 317)
+mass = 0.001
+
+[node name="Brick3" parent="." groups=["Particle"] instance=ExtResource("3_joq3i")]
+position = Vector2(999, 408)
+mass = 0.001
+
+[node name="Brick4" parent="." groups=["Particle"] instance=ExtResource("3_joq3i")]
+position = Vector2(877, 324)
+mass = 0.001
+
+[node name="Brick5" parent="." instance=ExtResource("3_joq3i")]
+position = Vector2(751, 405)
+mass = 0.001
+
+[node name="Brick6" parent="." groups=["SlowMoPowerUp"] instance=ExtResource("3_joq3i")]
+position = Vector2(667, 327)
+mass = 0.001
+
+[node name="Brick7" parent="." groups=["SlowMoPowerUp"] instance=ExtResource("3_joq3i")]
+position = Vector2(546, 405)
+mass = 0.001
+
+[node name="Brick8" parent="." groups=["Particle"] instance=ExtResource("3_joq3i")]
+position = Vector2(430, 332)
+mass = 0.001
+
+[node name="Brick9" parent="." groups=["SlowMoPowerUp"] instance=ExtResource("3_joq3i")]
+position = Vector2(298, 407)
+mass = 0.001
+
+[node name="Brick10" parent="." instance=ExtResource("3_joq3i")]
+position = Vector2(163, 328)
+mass = 0.001
+
+[node name="background" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.0923971, 0.0923971, 0.0923971, 1)
+z_index = -1
+position = Vector2(605, 271)
+texture = ExtResource("5_omt1i")
+
+[node name="Deathzone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(575, 665)
+shape = SubResource("RectangleShape2D_exwus")
+
+[connection signal="body_entered" from="Deathzone" to="Ball" method="_on_deathzone_body_entered"]

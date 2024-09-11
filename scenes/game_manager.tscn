@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp3bwao2602nm"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_xteuo"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_xteuo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 497.0
+offset_top = 589.0
+offset_right = 624.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer"]
+offset_left = 990.0
+offset_top = 599.0
+offset_right = 1141.0
+offset_bottom = 641.0
+theme_override_font_sizes/font_size = 30
+text = "Level: 1"
+horizontal_alignment = 2

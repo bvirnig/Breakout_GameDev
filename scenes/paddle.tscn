@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b47l2iyc0qduf"]
+
+[ext_resource type="Script" path="res://scripts/paddle.gd" id="1_3f0o5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5kcm"]
+load_path = "res://.godot/imported/paddle.png-3a0aaebe6a43044daf93673e46fcb481.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppoak"]
+radius = 17.0
+height = 186.0
+
+[node name="Paddle" type="CharacterBody2D"]
+position = Vector2(90, 210)
+script = ExtResource("1_3f0o5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = SubResource("CompressedTexture2D_y5kcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ppoak")
