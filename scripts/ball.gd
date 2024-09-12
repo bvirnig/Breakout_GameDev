@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 
 func gameOver():
 	GameManager.score = 0
-	GameManager.level = 1
+	GameManager.level = 2
 	get_tree().reload_current_scene()
 
 func _on_deathzone_body_entered(body: Node2D) -> void:
